@@ -18,18 +18,16 @@
     					<h3 class="text-center">
     						Mission to Mars
     					</h3> 
-    					<button type="button" class="btn active btn-md btn-primary btn-block">
-    						Scrape New Data
-    					</button>
+                        <p><a class="btn active btn-md btn-primary btn-block" href="/scrape" role="button">Update data!</a></p>
     				</div>
     			</div>
     			<div class="row">
     				<div class="col-md-12">
     					<h3>
-    						Newest News Title
+                            {{mars[1]['title']}}
     					</h3>
     					<p>
-    						Newest News Paragraph
+                            {{mars[1]['paragraph']}}
     					</p>
     				</div>
     			</div>
@@ -37,7 +35,7 @@
     				<div class="col-md-8">
     					<h3>
     						Featured Mars Image
-    					</h3><img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+    					</h3><img alt="Featured_img" src="{{mars[2]['featured_img']}}" />
     				</div>
     				<div class="col-md-4">
     					<h3>
@@ -47,70 +45,81 @@
     						<thead>
     							<tr>
     								<th>
-    									#
+    									{{mars[0]['category'][0]}}
     								</th>
     								<th>
-    									Product
+    									{{mars[0]['mars'][0]}}
     								</th>
     								<th>
-    									Payment Taken
+    									{{mars[0]['earth'][0]}}
     								</th>
     							</tr>
     						</thead>
     						<tbody>
     							<tr>
     								<td>
-    									1
+    									{{mars[0]['category'][1]}}
     								</td>
     								<td>
-    									TB - Monthly
+    									{{mars[0]['mars'][1]}}
     								</td>
     								<td>
-    									01/04/2012
+    									{{mars[0]['earth'][1]}}
     								</td>
     							</tr>
     							<tr class="table-active">
     								<td>
-    									1
+    									{{mars[0]['category'][2]}}
     								</td>
     								<td>
-    									TB - Monthly
+    									{{mars[0]['mars'][2]}}
     								</td>
     								<td>
-    									01/04/2012
+    									{{mars[0]['earth'][2]}}
     								</td>
     							</tr>
     							<tr class="table-success">
     								<td>
-    									2
+    									{{mars[0]['category'][3]}}
     								</td>
     								<td>
-    									TB - Monthly
+    									{{mars[0]['mars'][3]}}
     								</td>
     								<td>
-    									02/04/2012
+    									{{mars[0]['earth'][3]}}
     								</td>
     							</tr>
     							<tr class="table-warning">
     								<td>
-    									3
+    									{{mars[0]['category'][4]}}
     								</td>
     								<td>
-    									TB - Monthly
+    									{{mars[0]['mars'][4]}}
     								</td>
     								<td>
-    									03/04/2012
+    									{{mars[0]['earth'][4]}}
     								</td>
     							</tr>
     							<tr class="table-danger">
     								<td>
-    									4
+    									{{mars[0]['category'][5]}}
     								</td>
     								<td>
-    									TB - Monthly
+    									{{mars[0]['mars'][5]}}
     								</td>
     								<td>
-    									04/04/2012
+    									{{mars[0]['earth'][5]}}
+    								</td>
+    							</tr>
+    							<tr class="table-danger">
+    								<td>
+    									{{mars[0]['category'][6]}}
+    								</td>
+    								<td>
+    									{{mars[0]['mars'][6]}}
+    								</td>
+    								<td>
+    									{{mars[0]['earth'][6]}}
     								</td>
     							</tr>
     						</tbody>
@@ -126,27 +135,27 @@
     			</div>
     			<div class="row">
     				<div class="col-md-3">
-    					<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+    					<img alt="Bootstrap Image Preview" src="{{mars[3]['images'][0]}}" />
     					<h3>
-    						h3. Lorem ipsum dolor sit amet.
+    						{{mars[3]['titles'][0]}}
     					</h3>
     				</div>
     				<div class="col-md-3">
-    					<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+    					<img alt="Bootstrap Image Preview" src="{{mars[3]['images'][1]}}" />
     					<h3>
-    						h3. Lorem ipsum dolor sit amet.
+    						{{mars[3]['titles'][1]}}
     					</h3>
     				</div>
     				<div class="col-md-3">
-    					<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+    					<img alt="Bootstrap Image Preview" src="{{mars[3]['images'][2]}}" />
     					<h3>
-    						h3. Lorem ipsum dolor sit amet.
+    						{{mars[3]['titles'][2]}}
     					</h3>
     				</div>
     				<div class="col-md-3">
-    					<img alt="Bootstrap Image Preview" src="https://www.layoutit.com/img/sports-q-c-140-140-3.jpg" />
+    					<img alt="Bootstrap Image Preview" src="{{mars[3]['images'][3]}}" />
     					<h3>
-    						h3. Lorem ipsum dolor sit amet.
+    						{{mars[3]['titles'][3]}}
     					</h3>
     				</div>
     			</div>

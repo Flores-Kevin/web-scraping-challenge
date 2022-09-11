@@ -6,6 +6,8 @@ import pymongo
 import numpy as np
 
 def scrape_data():
+    # Declare empty list to append dictionaries to
+    data_list = []
     # Declare data sources
     url1 = "https://redplanetscience.com"
     url2 = "https://galaxyfacts-mars.com/"
@@ -13,8 +15,11 @@ def scrape_data():
     url4 = "https://spaceimages-mars.com/"
     # Make a table full of facts from earth and mars
     tables = pd.read_html(url2)
-    df1 = tables[0]
-    df1 = df1.rename(columns={0:" ",1:'Mars',2:"Earth"})
+    df = tables[0]
+    # df_dict = df.to_dict('records')
+    df_dict = {"category":(df[0].to_list()),"mars":(df[1].to_list()),"earth":(df[2].to_list())}
+    # Add the newly scraped table to 
+    data_list.append(df_dict)
     # Make a path for browser to visit and scrape data from latest news article
     executable_path = {'executable_path': ChromeDriverManager().install()}
     browser = Browser('chrome', ** executable_path, headless=False)
@@ -22,23 +27,19 @@ def scrape_data():
     # Use beautiful soup to parse html
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
-    # Declare empty array to append to.
-    latest_title = []
-    latest_paragraph = []
     # Get the newest title
     title = soup.find('div', class_='content_title')
     title = title.text.strip()
-    latest_title.append(title)
     # Get the newest paragraph
     paragraph = soup.find('div', class_='article_teaser_body')
     paragraph = paragraph.text.strip()
-    latest_paragraph.append(paragraph)
     # Store latest article into a dictionary
     latest_news = {
-        "title": latest_title,
-        "paragraph": latest_paragraph
+        "title": title,
+        "paragraph": paragraph
     }
-
+    # Append dictionary to list
+    data_list.append(latest_news)
     # Make a path for browser to turn into soup and scrape the featured img
     browser.visit(url4)
     html = browser.html
@@ -53,12 +54,13 @@ def scrape_data():
     featured_img = {
         "featured_img": img
     }
+    # Append dictionary to list
+    data_list.append(featured_img)
     # Make a path for browser to turn into soup and scrape the hemisphere titles and images
     browser.visit(url3)
     html = browser.html
     soup = BeautifulSoup(html, 'html.parser')
     item = soup.find_all('div', class_='item')
-    item = str(item)
     # Declare empty arrays to add links of images and titles
     title_list = []
     img_list = []
@@ -74,24 +76,9 @@ def scrape_data():
         "titles":title_list,
         "images":img_list
     }
+    # Append dictionary to list
+    data_list.append(hemispheres)
     # Close browser
     browser.quit()
     #Return scraped results
-    return df1,latest_news,featured_img,hemispheres
-
-
-# # Initialize PyMongo to work with MongoDBs
-# conn = 'mongodb://localhost:27017'
-# client = pymongo.MongoClient(conn)
-# #Creates/Defines database in Mongo
-# db = client.mars_db
-# #Define tables in database
-# facts = db.facts
-# news = db.news
-# featured = db.featured
-# hemispheres = db.hemispheres
-# #Creates and inserts all dataframes into their tables
-# news.insert_many(latest_news.to_dict('records'))
-# facts.insert_many(df1.to_dict('records'))
-# featured.insert_many(featured_img.to_dict('records'))
-# hemispheres.insert_many(hemispheres.to_dict('records'))
+    return data_list
